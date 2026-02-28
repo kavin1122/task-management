@@ -1,0 +1,113 @@
+.navbar-custom {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.logout-button {
+  position: relative;
+  overflow: visible;
+  background: linear-gradient(135deg, #c17a3a 0%, #a0633a 100%);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-left: 12px;
+}
+
+.logout-button:hover:not(.logout-active) {
+  background: linear-gradient(135deg, #d4825f 0%, #b8764a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(193, 122, 58, 0.5);
+}
+
+.logout-button:active {
+  transform: translateY(0);
+}
+
+/* Logout Animation */
+.logout-button.logout-active {
+  pointer-events: none;
+}
+
+.logout-button.logout-active::before {
+  content: '👤';
+  position: absolute;
+  font-size: 20px;
+  left: 50%;
+  top: 50%;
+  animation: logoutFall 1200ms ease-in forwards;
+  animation-delay: 200ms;
+}
+
+.logout-button.logout-active::after {
+  content: '🚪';
+  position: absolute;
+  font-size: 24px;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: doorOpen 900ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes logoutFall {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0) rotateZ(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotateZ(8deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(200px) rotateZ(180deg);
+  }
+}
+
+@keyframes doorOpen {
+  0% {
+    transform: translateY(-50%) rotateY(0deg) scaleX(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50%) rotateY(90deg) scaleX(0);
+    opacity: 0;
+  }
+}
+
+@keyframes buttonPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(193, 122, 58, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(193, 122, 58, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(193, 122, 58, 0);
+  }
+}
+
+.logout-button.logout-active {
+  animation: buttonPulse 800ms ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .logout-button {
+    padding: 6px 16px;
+    font-size: 14px;
+  }
+
+  .logout-button.logout-active::before {
+    font-size: 16px;
+  }
+
+  .logout-button.logout-active::after {
+    font-size: 20px;
+  }
+}
